@@ -1,4 +1,4 @@
-export default function TodoList({ $target, initialState }) {
+export default function TodoList({ $target, initialState, onClick }) {
   const $element = document.createElement("div");
   $target.appendChild($element);
   this.state = initialState;
@@ -7,12 +7,23 @@ export default function TodoList({ $target, initialState }) {
     this.render();
   };
   this.render = () => {
-    $element.innerHTML = `
+    console.log(this.state);
+    if (Array.isArray(this.state)) {
+      $element.innerHTML = `
     <h1>Simple Todo List</h1>
     <ul>
-    ${this.state.map(({ text }) => `<li>${text}</li>`).join("")}
+    ${this.state
+      .map(({ text, id }) => `<li data-id="${id}">${text}</li>`)
+      .join(" ")}
     </ul>
     `;
+      $element.querySelectorAll("li").forEach((li) => {
+        li.addEventListener("click", (e) => {
+          const { id } = e.target.dataset;
+          onClick();
+        });
+      });
+    }
   };
   this.render();
 }

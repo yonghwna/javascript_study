@@ -1,6 +1,3 @@
-import TodoList from "./todolist.js";
+import App from "./App.js";
 const $app = document.querySelector(".app");
-new TodoList({
-  $target: $app,
-  initialState: [{ text: "asdf" }, { text: "Asdf" }],
-});
+new App({ $app });
