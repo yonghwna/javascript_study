@@ -1,28 +1,19 @@
-const data2 = [
-  { text: "react 공식문서 스터디" },
-  { text: "코테 준비" },
-  { text: "프로젝트 설계" },
-];
+import App from "./App.js";
+import { getItem } from "./storage.js";
 
+console.log(App);
 const $app = document.querySelector("#app");
-new TodoForm({
+//있으면 가져오고 아니면 빈 값 넣어주고
+const initialState = getItem("todos") || [];
+/**
+ * 여기서 문제, 사용자가 직접 개발자도구를 열어서 로컬스토리 todos값을 json이 아닌 다른 값으로
+ * 바꾸어버린다면?
+ *
+ * 로컬 스토리지를 다룰 때는 가급적 한 파일에서 try/catch로 안전하게
+ * 근데 사용자가 직접 바꾸는것은 역시 못막나? 못막는다.
+ */
+new App({
   $target: $app,
-  //어떤 콜백을 줘서 실행시키게만 하면 된다.
-  //무슨 함수인지 알 필요는 없다.
-  //이것으로 인해 TodoForm이 영향을 받지도 않고.
-  onSubmit: (text) => {
-    const nextState = [...todoList.state, { text }];
-    todoList.setState(nextState);
-  },
+  title: "Link Local Storage",
+  initialState: initialState,
 });
-const todoList = new TodoList({
-  $target: $app,
-  initialState: data2,
-});
-
-// const $todo1Input = new TodoForm({
-//   $target: $app,
-//   text: "추가",
-//   onClick: todo1.setState,
-//   data: todo1.state,
-// });

@@ -1,4 +1,4 @@
-function TodoForm({ $target, onSubmit }) {
+export default function TodoForm({ $target, onSubmit }) {
   //form 만들고 target에 추가하기 =>컴포넌트 자체?
   const $form = document.createElement("form");
   $target.appendChild($form);

@@ -25,7 +25,7 @@ const app = document.querySelector("#app");
 new TodoList(app, [{ text: "뿌빠뿌비?" }, { text: "뿌빠뿌비!" }]);*/
 //params.$target : 컴포넌트가 추가될 dom element
 //params.initialSate : 컴포넌트 초기 상태
-function TodoList({ $target, initialState }) {
+export default function TodoList({ $target, initialState }) {
   /*컴포넌트 껍데기 생성 */
   //이거 어찌보면 서버컴포넌트로 만들 수 있는 부분이라 분리하신건가?
   //재렌더링 되는 부분을 최대한 줄이기 위해... 세상에!!
