@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="toolbar">
+      <button data-command="font-weight:bold;">bold</button>
+      <button data-test="test" data-command="font-style:italic;">italic</button>
+      <button aaaa-test="asdf" data-command="justify-content:center;">
+        justifyCenter
+      </button>
+      <button data-command="justify-content:left;">justifyLeft</button>
+      <button data-command="justify-content:right;">justifyRight</button>
+    </div>
+    <div class="editor" contenteditable="true"></div>
+    <script src="script.js" defer></script>
+  </body>
+</html>
