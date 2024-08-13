@@ -27,10 +27,20 @@ new TodoList(app, [{ text: "뿌빠뿌비?" }, { text: "뿌빠뿌비!" }]);*/
 //params.initialSate : 컴포넌트 초기 상태
 function TodoList({ $target, initialState }) {
   /*컴포넌트 껍데기 생성 */
+  //이거 어찌보면 서버컴포넌트로 만들 수 있는 부분이라 분리하신건가?
+  //재렌더링 되는 부분을 최대한 줄이기 위해... 세상에!!
   const $todoList = document.createElement("div");
   $target.appendChild($todoList);
   this.state = initialState;
-  /*컴포넌트 그리는 함수 */
+  /**state를 외부에서 조작할 수 있도록 인스턴스에 메서드를 준다 */
+  this.setState = (nextState) => {
+    this.state = nextState;
+    this.render();
+  };
+  /*컴포넌트 그리는 함수. state에따라 동적으로 렌더링
+  되어야하므로 render에 포함시켜서 매번 다시 그리게 한다.
+  다시 그려지는부분만 정확히 도려내서 render. 
+   */
   this.render = () => {
     $todoList.innerHTML = `
     <ul>
@@ -40,3 +50,25 @@ function TodoList({ $target, initialState }) {
   };
   this.render();
 }
+// function TodoList({ $target, initialState }) {
+//   /*컴포넌트 껍데기 생성 */
+//   const $todoList = document.createElement("div");
+//   $target.appendChild($todoList);
+//   this.state = initialState;
+
+//   this.setState = (nextState) => {
+//     // this.state = [...this.state, nextState];
+//     console.log(this.state);
+//     this.state = nextState;
+//     this.render();
+//   };
+//   /*컴포넌트 그리는 함수 */
+//   this.render = () => {
+//     $todoList.innerHTML = `
+//     <ul>
+//     ${this.state.map(({ text }) => `<li>${text}</li>`).join("")}
+//     </ul>
+//     `;
+//   };
+//   this.render();
+// }
