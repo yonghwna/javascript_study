@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo Form</title>
+  </head>
+  <body>
+    <form id="todoForm">
+      <input class="add-todo-input" placeholder="ADD TODO" required />
+      <select name="priority" id="prioritySelect">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      <button type="submit">Add Todo</button>
+    </form>
+
+    <script>
+      document
+        .getElementById("todoForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the form from submitting the traditional way
+
+          // Get values from the form
+          const inputElement = document.querySelector(".add-todo-input");
+          const selectElement = document.getElementById("prioritySelect");
+          const todoText = inputElement.value;
+          const priority = selectElement.value;
+
+          // Create an object with the values
+          const todoData = {
+            text: todoText,
+            priority: priority,
+          };
+
+          // Print the object to console (for debugging)
+          console.log(todoData);
+
+          // Send the object to the server
+          fetch("https://your-server-endpoint.com/api/todos", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(todoData),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              // Handle the response data
+              console.log("Success:", data);
+              // Clear the input fields after submission
+              inputElement.value = "";
+              selectElement.value = "1"; // Reset to the default value if needed
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        });
+    </script>
+  </body>
+</html>

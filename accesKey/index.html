@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accesskey Helper</title>
+  </head>
+  <body>
+    <h1>Accesskey Test Page</h1>
+    <p>Press <kbd>1</kbd> for Home</p>
+    <p>Press <kbd>2</kbd> for About</p>
+
+    <a href="#" accesskey="1" id="home-link">Home</a>
+    <a href="#" accesskey="2" id="about-link">About</a>
+
+    <script src="accesskey-helper.js"></script>
+  </body>
+  <script>
+    document.addEventListener("keydown", function (event) {
+      // 감지할 키를 지정합니다. 이 예제에서는 숫자 1과 2를 사용합니다.
+      const accessKeyMap = {
+        1: "1",
+        2: "2",
+      };
+
+      const key = event.key;
+
+      if (accessKeyMap[key]) {
+        event.preventDefault();
+
+        const ctrlOptionEvent = new KeyboardEvent("keydown", {
+          ctrlKey: true,
+          altKey: true,
+          key: key,
+        });
+
+        document.dispatchEvent(ctrlOptionEvent);
+      }
+    });
+  </script>
+</html>

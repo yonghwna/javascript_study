@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>귀여운 감정 선택기</title>
+    <style>
+      body {
+        font-family: "Arial Rounded MT Bold", "Arial", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #ffd6e0;
+      }
+
+      .emotion-select {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 20px;
+        border: 3px solid #ff8fab;
+        background-color: #fff0f5;
+        color: #ff5c8a;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+      .emotion-select:hover {
+        background-color: #ffe5ec;
+      }
+
+      .emotion-select option {
+        padding: 10px;
+        background-color: #fff0f5;
+        color: #ff5c8a;
+        border-bottom: 1px solid #ffb3c6;
+      }
+
+      .emotion-select option:hover {
+        background-color: #ffe5ec;
+      }
+
+      .emotion-select option:checked {
+        background-color: #ffb3c6;
+        color: #fff;
+      }
+
+      .emotion-select option:first-child {
+        font-weight: bold;
+        color: #ff3377;
+      }
+    </style>
+  </head>
+  <body>
+    <select class="emotion-select">
+      <option value="" disabled selected>난이도</option>
+      <option value="trivial">😌 하찮음</option>
+      <option value="happy">😊 행복</option>
+      <option value="easy">😎 쉬움</option>
+      <option value="challenge">💪 도전</option>
+      <option value="boring">😴 지루함</option>
+    </select>
+  </body>
+</html>
